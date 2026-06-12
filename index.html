@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AcademiQ — IELTS 8-Week Trainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-title">AcademiQ</div>
+    <div class="sb-logo-sub">IELTS 8-Week Trainer</div>
+  </div>
+  <div class="sb-xp">
+    <div class="sb-xp-row">
+      <span class="sb-xp-label">XP Progress</span>
+      <span class="sb-xp-val" id="xpVal">0 / 500 XP</span>
+    </div>
+    <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:0%"></div></div>
+    <div class="sb-level">Level: <span id="levelName">Beginner</span></div>
+  </div>
+  <div class="sb-streak" id="streakBadge">🔥 <span id="streakVal">0</span> day streak</div>
+  <nav class="sb-nav">
+    <div class="sb-section">Main</div>
+    <div class="sb-item active" data-page="dashboard"><span class="ic">🏠</span> Dashboard</div>
+    <div class="sb-section">Modules</div>
+    <div class="sb-item" data-page="listening"><span class="ic">🎧</span> Listening</div>
+    <div class="sb-item" data-page="speaking"><span class="ic">🎙️</span> Speaking</div>
+    <div class="sb-item" data-page="reading"><span class="ic">📖</span> Reading</div>
+    <div class="sb-item" data-page="writing"><span class="ic">✍️</span> Writing</div>
+    <div class="sb-section">Track</div>
+    <div class="sb-item" data-page="progress"><span class="ic">📈</span> Progress</div>
+    <div class="sb-item" data-page="badges"><span class="ic">🏆</span> Badges <span class="sb-badge" id="newBadgesBadge" style="display:none">!</span></div>
+  </nav>
+  <div class="sb-week">
+    <strong id="currentWeekLabel">Week 1 of 8</strong>
+    <span id="weekTheme">Foundation Skills</span>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="top-bar">
+    <div class="tb-title" id="topBarTitle">Dashboard</div>
+    <div class="tb-right">
+      <div class="tb-timer"><span class="ic">⏱</span> <span id="sessionTimer">00:00</span></div>
+      <div class="level-pill" id="levelPill">Beginner</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ── DASHBOARD ── -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-h">
+        <h1>Welcome back 👋</h1>
+        <p>Your personalised IELTS training dashboard. Stay consistent — 2h30 daily gets you to 6.5 in 8 weeks.</p>
+      </div>
+
+      <div class="dash-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📝</div>
+          <div class="stat-val" id="statEssays">0</div>
+          <div class="stat-label">Essays Done</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎙️</div>
+          <div class="stat-val" id="statSpeaking">0</div>
+          <div class="stat-label">Speaking Sessions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📖</div>
+          <div class="stat-val" id="statReading">0</div>
+          <div class="stat-label">Reading Tests</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-val" id="statXP">0</div>
+          <div class="stat-label">Total XP</div>
+        </div>
+      </div>
+
+      <div class="seneca-score">
+        <div class="sr-left">
+          <h3>Seneca Readiness Score</h3>
+          <p>Your overall academic English readiness for Canadian college admission</p>
+        </div>
+        <div>
+          <div class="sr-score" id="senecaScore">12<small>/ 100</small></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:1.25rem">
+        <div class="card-h"><span class="ic">📊</span> Skill Progress</div>
+        <div class="skill-bars">
+          <div class="skill-row">
+            <span class="skill-name">🎧 Listening</span>
+            <div class="skill-track"><div class="skill-fill fill-blue" id="bar-listening" style="width:5%"></div></div>
+            <span class="skill-pct" id="pct-listening">5%</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">🎙️ Speaking</span>
+            <div class="skill-track"><div class="skill-fill fill-green" id="bar-speaking" style="width:5%"></div></div>
+            <span class="skill-pct" id="pct-speaking">5%</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">📖 Reading</span>
+            <div class="skill-track"><div class="skill-fill fill-gold" id="bar-reading" style="width:5%"></div></div>
+            <span class="skill-pct" id="pct-reading">5%</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">✍️ Writing</span>
+            <div class="skill-track"><div class="skill-fill fill-purple" id="bar-writing" style="width:5%"></div></div>
+            <span class="skill-pct" id="pct-writing">5%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><span class="ic">📅</span> 8-Week Journey</div>
+        <div class="week-plan" id="weekPlan"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><span class="ic">🎯</span> Today's Focus</div>
+        <div id="todayFocus" style="font-size:.875rem;color:var(--text2);line-height:1.8"></div>
+      </div>
+    </div>
+
+    <!-- ── LISTENING ── -->
+    <div class="page" id="page-listening">
+      <div class="page-h">
+        <h1>🎧 Listening Module</h1>
+        <p>Watch academic lectures, then answer AI-generated comprehension questions to build listening stamina.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><span class="ic">🎓</span> Select a Lecture Topic</div>
+        <div class="lecture-topics" id="lectureTopics"></div>
+      </div>
+
+      <div class="card" id="videoCard" style="display:none">
+        <div class="card-h"><span class="ic">▶️</span> <span id="videoTitle">Lecture</span></div>
+        <div class="video-wrap">
+          <iframe id="ytEmbed" src="" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe>
+        </div>
+        <div style="display:flex;gap:.75rem;margin-top:.75rem;flex-wrap:wrap">
+          <button class="btn btn-primary" id="genListenQ">Generate Questions ↗</button>
+          <button class="btn btn-ghost" id="clearListenQ">New Lecture</button>
+        </div>
+      </div>
+
+      <div class="loading" id="listenLoading">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span>Generating comprehension questions…</span>
+      </div>
+      <div id="listenQs"></div>
+    </div>
+
+    <!-- ── SPEAKING ── -->
+    <div class="page" id="page-speaking">
+      <div class="page-h">
+        <h1>🎙️ Speaking Module</h1>
+        <p>Practice IELTS-style speaking questions. Write your response as if speaking, and get detailed AI feedback.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><span class="ic">⚙️</span> Practice Settings</div>
+        <div class="row">
+          <div class="field">
+            <label class="lbl">IELTS Part</label>
+            <select id="speakPart">
+              <option value="part1">Part 1 — Personal / Everyday</option>
+              <option value="part2">Part 2 — Cue Card (2 minutes)</option>
+              <option value="part3">Part 3 — Abstract Discussion</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="lbl">Topic (optional)</label>
+            <input type="text" id="speakTopic" placeholder="e.g. technology, travel, family…">
+          </div>
+        </div>
+        <div class="chips" id="speakChips">
+          <div class="chip active" data-t="">Random</div>
+          <div class="chip" data-t="technology">Technology</div>
+          <div class="chip" data-t="environment">Environment</div>
+          <div class="chip" data-t="education">Education</div>
+          <div class="chip" data-t="health">Health</div>
+          <div class="chip" data-t="travel">Travel</div>
+          <div class="chip" data-t="family">Family</div>
+        </div>
+        <button class="btn btn-primary" id="genSpeakQ">Get Question ↗</button>
+      </div>
+
+      <div class="loading" id="speakGenLoading">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span>Generating speaking question…</span>
+      </div>
+
+      <div id="speakQuestionArea" style="display:none">
+        <div class="speak-q" id="speakQBox">
+          <span class="part-tag" id="speakPartTag">Part 1</span>
+          <div id="speakQText"></div>
+          <div class="speak-hint" id="speakHint"></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><span class="ic">💬</span> Your Response</div>
+          <label class="lbl">Write what you would say (aim for natural, spoken English)</label>
+          <textarea id="speakResponse" rows="7" placeholder="Talk about this topic as if you were in the exam room…&#10;&#10;Part 1: 30–45 seconds (60–90 words)&#10;Part 2: 1–2 minutes (150–250 words)&#10;Part 3: 45–90 seconds (80–150 words)"></textarea>
+          <div class="wc" id="speakWc">0 words</div>
+          <div style="display:flex;gap:.75rem;margin-top:.75rem;flex-wrap:wrap">
+            <button class="btn btn-primary" id="submitSpeak">Get AI Feedback ↗</button>
+            <button class="btn btn-ghost" id="newSpeakQ">New Question</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="loading" id="speakFeedbackLoading">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span>Analysing your speaking response…</span>
+      </div>
+      <div id="speakError"></div>
+      <div class="resp-box" id="speakResp"><div id="speakRespContent"></div></div>
+    </div>
+
+    <!-- ── READING ── -->
+    <div class="page" id="page-reading">
+      <div class="page-h">
+        <h1>📖 Reading Module</h1>
+        <p>AI-generated IELTS-style academic passages with timed exercises: multiple choice, True/False/Not Given, and matching headings.</p>
+      </div>
+
+      <div class="card" id="readSetup">
+        <div class="card-h"><span class="ic">⚙️</span> Reading Test Settings</div>
+        <div class="row">
+          <div class="field">
+            <label class="lbl">Question Type</label>
+            <select id="readType">
+              <option value="tfng">True / False / Not Given</option>
+              <option value="mcq">Multiple Choice</option>
+              <option value="matching">Matching Headings</option>
+              <option value="short">Short Answer</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="lbl">Topic</label>
+            <input type="text" id="readTopic" placeholder="e.g. climate change, AI, urbanisation…">
+          </div>
+          <div class="field">
+            <label class="lbl">Timer</label>
+            <select id="readTimer">
+              <option value="20">20 minutes</option>
+              <option value="15" selected>15 minutes</option>
+              <option value="10">10 minutes</option>
+              <option value="0">No timer</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="genReading">Generate Reading Test ↗</button>
+      </div>
+
+      <div class="loading" id="readLoading">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span>Generating academic passage and questions…</span>
+      </div>
+      <div id="readError"></div>
+      <div id="readTest" style="display:none">
+        <div class="timer-bar">
+          <span>⏱ Time Remaining</span>
+          <span class="timer-num" id="readTimerDisplay">15:00</span>
+          <button class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.3);padding:.3rem .75rem;font-size:.75rem" id="endReadBtn">Submit Test</button>
+        </div>
+        <div class="card">
+          <div class="card-h"><span class="ic">📄</span> <span id="passageTitle">Reading Passage</span></div>
+          <div class="passage-box" id="passageText"></div>
+        </div>
+        <div id="questionsArea"></div>
+        <button class="btn btn-green" id="checkAnswers" style="margin-top:.5rem">Check Answers ↗</button>
+      </div>
+      <div class="resp-box" id="readResults"><div id="readResultsContent"></div></div>
+    </div>
+
+    <!-- ── WRITING ── -->
+    <div class="page" id="page-writing">
+      <div class="page-h">
+        <h1>✍️ Writing Module</h1>
+        <p>Submit IELTS Task 1 or Task 2 essays. Get band score estimation, grammar correction, and vocabulary improvements.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><span class="ic">📋</span> Task Details</div>
+        <div class="row">
+          <div class="field">
+            <label class="lbl">Task Type</label>
+            <select id="writeTask">
+              <option value="task1">Task 1 — Describe a Graph / Process / Map</option>
+              <option value="task2">Task 2 — Argumentative / Discussion Essay</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="lbl">Essay Prompt (optional)</label>
+            <input type="text" id="writePrompt" placeholder="Paste the essay question here…">
+          </div>
+        </div>
+        <div id="templateSection" style="margin-bottom:1rem;display:none">
+          <div class="card-h" style="margin-bottom:.75rem"><span class="ic">🗂</span> Essay Template</div>
+          <div class="template-block">
+            <h4>Introduction</h4>
+            <p>Paraphrase the question + give your overall statement / thesis.</p>
+          </div>
+          <div class="template-block">
+            <h4>Body Paragraph 1</h4>
+            <p>Main idea + supporting evidence + example. Use linking words: Furthermore, In addition, However…</p>
+          </div>
+          <div class="template-block">
+            <h4>Body Paragraph 2</h4>
+            <p>Contrasting or second main idea + evidence + personal example.</p>
+          </div>
+          <div class="template-block">
+            <h4>Conclusion</h4>
+            <p>Summarise main points + restate your position without introducing new ideas.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:.75rem;margin-bottom:.75rem;flex-wrap:wrap">
+          <button class="btn btn-ghost" id="toggleTemplate">📋 Show Template</button>
+          <button class="btn btn-ghost" id="loadSample">Load Sample Essay</button>
+          <button class="btn btn-ghost" id="genWritePrompt">Generate Prompt ↗</button>
+        </div>
+        <label class="lbl">Your Essay</label>
+        <textarea id="writeEssay" rows="12" placeholder="Write your IELTS essay here…&#10;&#10;Task 1: minimum 150 words&#10;Task 2: minimum 250 words&#10;&#10;Tip: Use formal vocabulary, vary your sentence structure, and organise your ideas clearly."></textarea>
+        <div class="wc" id="writeWc">0 words</div>
+        <div style="display:flex;gap:.75rem;margin-top:.85rem;flex-wrap:wrap">
+          <button class="btn btn-primary" id="submitWrite">Analyse Essay ↗</button>
+          <button class="btn btn-ghost" id="clearWrite">Clear</button>
+        </div>
+      </div>
+
+      <div class="loading" id="writeLoading">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span>Analysing your essay…</span>
+      </div>
+      <div id="writeError"></div>
+      <div class="resp-box" id="writeResp"><div id="writeRespContent"></div></div>
+    </div>
+
+    <!-- ── PROGRESS ── -->
+    <div class="page" id="page-progress">
+      <div class="page-h">
+        <h1>📈 Your Progress</h1>
+        <p>Track your 8-week journey to IELTS 6.5–7.0 and Canadian college readiness.</p>
+      </div>
+
+      <div class="dash-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-val" id="p-seneca">12</div>
+          <div class="stat-label">Seneca Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-val" id="p-xp">0</div>
+          <div class="stat-label">Total XP</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-val" id="p-streak">0</div>
+          <div class="stat-label">Day Streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-val" id="p-sessions">0</div>
+          <div class="stat-label">Sessions</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><span class="ic">📊</span> Detailed Skill Scores</div>
+        <div class="skill-bars" style="gap:1.1rem">
+          <div class="skill-row" style="grid-template-columns:90px 1fr 50px">
+            <span class="skill-name">🎧 Listening</span>
+            <div class="skill-track" style="height:12px"><div class="skill-fill fill-blue" id="pbar-listening" style="width:5%"></div></div>
+            <span class="skill-pct" id="ppct-listening">5%</span>
+          </div>
+          <div class="skill-row" style="grid-template-columns:90px 1fr 50px">
+            <span class="skill-name">🎙️ Speaking</span>
+            <div class="skill-track" style="height:12px"><div class="skill-fill fill-green" id="pbar-speaking" style="width:5%"></div></div>
+            <span class="skill-pct" id="ppct-speaking">5%</span>
+          </div>
+          <div class="skill-row" style="grid-template-columns:90px 1fr 50px">
+            <span class="skill-name">📖 Reading</span>
+            <div class="skill-track" style="height:12px"><div class="skill-fill fill-gold" id="pbar-reading" style="width:5%"></div></div>
+            <span class="skill-pct" id="ppct-reading">5%</span>
+          </div>
+          <div class="skill-row" style="grid-template-columns:90px 1fr 50px">
+            <span class="skill-name">✍️ Writing</span>
+            <div class="skill-track" style="height:12px"><div class="skill-fill fill-purple" id="pbar-writing" style="width:5%"></div></div>
+            <span class="skill-pct" id="ppct-writing">5%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-h"><span class="ic">📅</span> Weekly Schedule & Focus</div>
+        <div id="weeklySchedule" style="font-size:.85rem;line-height:2"></div>
+      </div>
+    </div>
+
+    <!-- ── BADGES ── -->
+    <div class="page" id="page-badges">
+      <div class="page-h">
+        <h1>🏆 Achievements</h1>
+        <p>Earn badges by completing milestones. Keep your streak and push toward Academic Ready level!</p>
+      </div>
+      <div class="badges-grid" id="badgesGrid"></div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<div class="toast" id="toast">🎉 <span id="toastMsg">Achievement unlocked!</span></div>
+
+<script src="script.js"></script>
+</body>
+</html>
